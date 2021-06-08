@@ -1,10 +1,4 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-
-import ShoppingCartItem from "../ShoppingCartItem";
-import Button from "../Button";
-
-import checkoutContext from "../../context/checkoutData";
+import React from "react";
 
 function getCartTotal(cart) {
   return cart.reduce((accum, item) => {
@@ -13,8 +7,6 @@ function getCartTotal(cart) {
 }
 
 function OverviewSidebar({ cartItems, handleRemove, handleChange, ...props }) {
-  const { isCheckoutDisabled } = useContext(checkoutContext);
-  console.log(isCheckoutDisabled);
   return (
     <aside {...props}>
       <div className="row flex-column">
@@ -22,20 +14,38 @@ function OverviewSidebar({ cartItems, handleRemove, handleChange, ...props }) {
           <h2 className="h3 mt-2">Shopping Cart</h2>
           <hr className="mb-3" />
         </div>
-
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
-            <ShoppingCartItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              img={item.img}
-              quantity={item.quantity}
-              unitsInStock={item.unitsInStock}
-              handleRemove={handleRemove}
-              handleChange={handleChange}
-            />
+            <div key={item.id} className="col">
+              <div className="row">
+                <div className="col-12 col-xl-4 mb-3 mb-xl-0">
+                  <img
+                    className="ShoppingCartItem__img"
+                    src={item.img}
+                    alt=""
+                  />
+                </div>
+                <div className="col-12 col-xl-8">
+                  <div className="row flex-column">
+                    <div className="col">
+                      <h4 className="h5">
+                        <strong>{item.title}</strong>
+                      </h4>
+                    </div>
+                    <div className="col">
+                      <p>
+                        <strong>{item.price}€</strong>
+                      </p>
+                    </div>
+                    <div className="col">
+                      <p>
+                        <strong>Quantity: {item.quantity}</strong>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))
         ) : (
           <div className="col mb-4">
@@ -52,11 +62,6 @@ function OverviewSidebar({ cartItems, handleRemove, handleChange, ...props }) {
                 </h4>
               </div>
               <hr />
-            </div>
-            <div className="col">
-              <Link to="/checkout/step-1">
-                <Button disabled={isCheckoutDisabled}>Checkout</Button>
-              </Link>
             </div>
           </div>
         </div>
