@@ -6,6 +6,7 @@ import withLayout from "../../../hoc/withLayout";
 
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
+import OverviewSidebar from "../../../components/OverviewSidebar";
 
 import PersonalDetailsSchema from "./PersonalDetailsSchema";
 
@@ -13,7 +14,7 @@ import checkoutContext from "../../../context/checkoutData";
 
 const isCheckout = true;
 
-function PersonalDetails({ cartItems }) {
+function PersonalDetails({ cartItems, handleRemove, handleChange }) {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { setCheckoutData, state } = useContext(checkoutContext);
 
@@ -106,17 +107,12 @@ function PersonalDetails({ cartItems }) {
       </div>
 
       <div className="col col-4">
-        {cartItems.map((item) => (
-          <div key={item.id} id={item.id}>
-            <p>Product name: {item.title}</p>
-            <img
-              src={item.img}
-              alt={item.title}
-              style={({ width: "100px" }, { height: "100px" })}
-            />
-            <p>Amount: {item.quantity}</p>
-          </div>
-        ))}
+        <OverviewSidebar
+          className="col"
+          cartItems={cartItems}
+          handleRemove={handleRemove}
+          handleChange={handleChange}
+        />
       </div>
     </div>
   );
