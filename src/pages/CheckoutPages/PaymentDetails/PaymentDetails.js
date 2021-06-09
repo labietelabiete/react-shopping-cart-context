@@ -49,6 +49,17 @@ function PaymentDetails() {
         <form onSubmit={formik.handleSubmit}>
           <Input
             type="text"
+            label="Payment method*"
+            id="paymentMethod"
+            value={formik.values.paymentMethod}
+            placeholder="Card name"
+            handleChange={formik.handleChange}
+            handleBlur={formik.handleBlur}
+            hasErrorMessage={formik.touched.paymentMethod}
+            errorMessage={formik.errors.paymentMethod}
+          />
+          <Input
+            type="text"
             label="Card name*"
             id="cardName"
             value={formik.values.cardName}
