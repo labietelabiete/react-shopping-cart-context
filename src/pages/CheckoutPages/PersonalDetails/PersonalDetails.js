@@ -14,7 +14,7 @@ import checkoutContext from "../../../context/checkoutData";
 
 const isCheckout = true;
 
-function PersonalDetails({ cartItems, handleRemove, handleChange }) {
+function PersonalDetails({ cartItems }) {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { setCheckoutData, state } = useContext(checkoutContext);
 
@@ -107,12 +107,7 @@ function PersonalDetails({ cartItems, handleRemove, handleChange }) {
       </div>
 
       <div className="col col-4">
-        <OverviewSidebar
-          className="col"
-          cartItems={cartItems}
-          handleRemove={handleRemove}
-          handleChange={handleChange}
-        />
+        <OverviewSidebar className="col" cartItems={cartItems} />
       </div>
     </div>
   );

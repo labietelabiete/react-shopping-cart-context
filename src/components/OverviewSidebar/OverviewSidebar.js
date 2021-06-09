@@ -6,17 +6,17 @@ function getCartTotal(cart) {
   }, 0);
 }
 
-function OverviewSidebar({ cartItems, handleRemove, handleChange, ...props }) {
+function OverviewSidebar({ cartItems, ...props }) {
   return (
     <aside {...props}>
       <div className="row flex-column">
         <div className="col shopping__cart__header">
-          <h2 className="h3 mt-2">Shopping Cart</h2>
+          <h2 className="h3 mt-2">Checkout Summary</h2>
           <hr className="mb-3" />
         </div>
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
-            <div key={item.id} className="col">
+            <div key={item.id} className="col mb-2">
               <div className="row">
                 <div className="col-12 col-xl-4 mb-3 mb-xl-0">
                   <img
