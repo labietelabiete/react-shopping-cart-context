@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import checkoutContext from "../../context/checkoutData";
 
 function Input({
   type = "text",
@@ -12,14 +14,11 @@ function Input({
   hasErrorMessage,
   ...props
 }) {
-  const expresion = /[0-9]{2}/;
+  const { tempData } = useContext(checkoutContext);
+
   function expiryDate(e) {
-    if (id === "cardExpiryDate") {
-      let hallado = e.target.value.match(expresion);
-      if (hallado !== null) {
-        hallado += "/";
-      }
-    }
+    const data = `{"${e.target.id}" : "${e.target.value}"}`;
+    tempData(JSON.parse(data));
     return value;
   }
   return (
@@ -42,7 +41,11 @@ function Input({
                   ? "custom-control-input is-invalid"
                   : "form-control is-invalid"
               }`
-            : `${type === "checkbox" ? "custom-control-input" : "form-control"}`
+            : `${
+                type === "checkbox"
+                  ? "custom-control-input is-valid"
+                  : "form-control  is-valid"
+              }`
         }
         id={id}
         name={id}

@@ -2,12 +2,14 @@ import React, { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { Redirect } from "react-router-dom";
 
+import "./PaymentDetails.scss";
+
 import withLayout from "../../../hoc/withLayout";
 
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 
-import PaymentDatailsSchema from "./PaymentDatailsSchema";
+import PaymentDetailsSchema from "./PaymentDetailsSchema";
 
 import checkoutContext from "../../../context/checkoutData";
 
@@ -26,7 +28,7 @@ function PaymentDetails() {
       cardCVV: state.cardCVV,
       termsConditions: state.termsConditions,
     },
-    validationSchema: PaymentDatailsSchema,
+    validationSchema: PaymentDetailsSchema,
     onSubmit: (values, { setSubmitting }) => {
       setSubmitting(true);
       setCheckoutData({
@@ -66,6 +68,7 @@ function PaymentDetails() {
                 errorMessage={formik.errors.paymentMethod}
                 className="form-check-input"
               />
+              <div className="visa" />
             </div>
             <div className="col col-4">
               <Input
@@ -80,6 +83,7 @@ function PaymentDetails() {
                 errorMessage={formik.errors.paymentMethod}
                 className="form-check-input"
               />
+              <div className="paypal" />
             </div>
             <div className="col col-4">
               <Input
@@ -94,6 +98,7 @@ function PaymentDetails() {
                 errorMessage={formik.errors.paymentMethod}
                 className="form-check-input"
               />
+              <div className="applepay" />
             </div>
           </div>
           <div className="row">
@@ -123,11 +128,11 @@ function PaymentDetails() {
               <div className="card-inputs row col-12 text-center">
                 <div className="col col-6">
                   <Input
-                    type="text"
+                    type="date"
                     label="Card expiry date*"
                     id="cardExpiryDate"
                     value={formik.values.cardExpiryDate}
-                    placeholder="111"
+                    placeholder="MM/YY"
                     handleChange={formik.handleChange}
                     handleBlur={formik.handleBlur}
                     hasErrorMessage={formik.touched.cardExpiryDate}
@@ -150,7 +155,32 @@ function PaymentDetails() {
                 </div>
               </div>
             </div>
-            <div className="col col-6">Card layout</div>
+            <div className="col col-6">
+              <div className="col front-card pt-1">
+                <div className="col col-12 pt-4 pl-1">
+                  <div className="col col-12 pt-5 pl-1">
+                    {state.tempData.cardName}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col col-12 pt-2 pl-4">
+                    {state.tempData.cardNumber}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col col-12 pt-3 pr-4 text-right">
+                    {state.tempData.cardExpiryDate}
+                  </div>
+                </div>
+              </div>
+              <div className="col back-card">
+                <div className="col col-12">
+                  <div className="col col-12 pb-2 mb-1">
+                    {state.tempData.cardCVV}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="row">
             <Input
