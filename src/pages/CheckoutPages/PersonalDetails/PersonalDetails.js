@@ -90,9 +90,9 @@ function PersonalDetails({ cartItems }) {
             id="phonePrefix"
           /> */}
           <p className="mb-2 mt-3"> Phone Number </p>
-          <div className="form-group d-flex">
+          <div className="form-group d-flex mb-3">
             <select
-              className="phonePrefixSelect"
+              className="phone-prefix-select"
               value={formik.values.phonePrefix}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
