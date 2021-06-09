@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useFormik } from "formik";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import withLayout from "../../../hoc/withLayout";
 
@@ -9,6 +9,8 @@ import Button from "../../../components/Button";
 import OverviewSidebar from "../../../components/OverviewSidebar";
 
 import BillingAddressSchema from "./BillingAddressSchema";
+
+import "./BillingAddress.scss";
 
 import checkoutContext from "../../../context/checkoutData";
 
@@ -23,7 +25,7 @@ function BillingAddress({ cartItems }) {
       address: state.address,
       city: state.city,
       ZC: state.ZC,
-      country: state.country,
+      country: state.country ? state.phonePrefix : "Spain",
     },
     validationSchema: BillingAddressSchema,
     onSubmit: (values, { setSubmitting }) => {
@@ -77,31 +79,39 @@ function BillingAddress({ cartItems }) {
             hasErrorMessage={formik.touched.ZC}
             errorMessage={formik.errors.ZC}
           />
-          <div className="country-inputs w-100">
-            <label htmlFor="country">
-              Country
-              <br />
-              <select
-                value={formik.values.country}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                id="country"
-              >
-                <option value="Spain">Spain</option>
-                <option value="Italy">Italy</option>
-                <option value="Germany">Germany</option>
-                <option value="France">France</option>
-                <option value="Netherlands">Netherlands</option>
-              </select>
-            </label>
+          <p className="mb-2 mt-3"> Country </p>
+
+          <div className="form-group d-flex mb-4">
+            <select
+              className="country-select w-100"
+              value={formik.values.country}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              id="country"
+            >
+              <option value="Spain">Spain</option>
+              <option value="Italy">Italy</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="Netherlands">Netherlands</option>
+            </select>
           </div>
-          <Button
-            submitButton
-            block
-            disabled={formik.isValidating || !formik.isValid}
-          >
-            {formik.isSubmitting ? "Submitting..." : "Submit"}
-          </Button>
+          <div className="row">
+            <div className="col col-6">
+              <Link className="w-100" to="/checkout/step-1">
+                <Button block>Back</Button>
+              </Link>
+            </div>
+            <div className="col col-6">
+              <Button
+                submitButton
+                block
+                disabled={formik.isValidating || !formik.isValid}
+              >
+                {formik.isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
+            </div>
+          </div>
         </form>
         {hasSubmitted && <Redirect to="/checkout/step-3" />}
       </div>
