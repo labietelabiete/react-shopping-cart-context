@@ -105,7 +105,6 @@ function PersonalDetails({ cartItems }) {
         </form>
         {hasSubmitted && <Redirect to="/checkout/step-2" />}
       </div>
-
       <div className="col col-4">
         <OverviewSidebar className="col" cartItems={cartItems} />
       </div>
