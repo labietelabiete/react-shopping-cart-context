@@ -36,13 +36,13 @@ const initialCheckoutContext = {
   phoneNumber: "",
   address: "",
   city: "",
-  ZC: 0,
+  ZC: "",
   country: "",
   paymentMethod: "",
   cardName: "",
-  cardNumber: 0,
-  cardExpiryDate: 0,
-  cardCVV: 0,
+  cardNumber: "",
+  cardExpiryDate: "",
+  cardCVV: "",
   termsConditions: false,
   setPersonalDetails: () => {},
 };
@@ -87,7 +87,6 @@ function buildNewCartItem(cartItem) {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialCheckoutContext);
   const { isCheckoutDisabled } = state;
-  console.log(state);
 
   const [products, setProducts] = useState(() =>
     loadLocalStorageItems(PRODUCTS_LOCAL_STORAGE_KEY, []),

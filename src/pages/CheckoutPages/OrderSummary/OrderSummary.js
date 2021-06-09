@@ -9,7 +9,6 @@ const isCheckout = true;
 
 function OrderSummary({ cartItems }) {
   const { state } = useContext(checkoutContext);
-  console.log(state);
 
   function itemCalc(itemQuantity, itemPrice) {
     return itemQuantity * itemPrice;
