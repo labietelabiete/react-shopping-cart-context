@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { useFormik } from "formik";
 import { Redirect } from "react-router-dom";
 
+import Select from "react-select";
+
 import withLayout from "../../../hoc/withLayout";
 
 import Input from "../../../components/Input";
@@ -13,6 +15,14 @@ import PersonalDetailsSchema from "./PersonalDetailsSchema";
 import checkoutContext from "../../../context/checkoutData";
 
 const isCheckout = true;
+
+const options = [
+  { value: "+34", label: "Spain +34" },
+  { value: "+39", label: "Italy +39" },
+  { value: "+49", label: "Germany +49" },
+  { value: "+33", label: "France +33" },
+  { value: "+31", label: "Netherlands +31" },
+];
 
 function PersonalDetails({ cartItems }) {
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -70,7 +80,15 @@ function PersonalDetails({ cartItems }) {
             <label htmlFor="phoneNumber">
               Phone Number
               <br />
-              <select
+              <Select
+                defaultValue={options[0]}
+                options={options}
+                value={formik.values.phonePrefix}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                id="phonePrefix"
+              />
+              {/* <select
                 value={formik.values.phonePrefix}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -81,7 +99,7 @@ function PersonalDetails({ cartItems }) {
                 <option value="+49">Germany +49</option>
                 <option value="+33">France +33</option>
                 <option value="+31">Netherlands +31</option>
-              </select>
+              </select> */}
               <Input
                 type="text"
                 label=""
