@@ -50,9 +50,7 @@ function PaymentDetails() {
       <div className="col col-12">
         <form onSubmit={formik.handleSubmit}>
           <div className="row">
-            <p>
-              <strong>How would you like to pay?</strong>
-            </p>
+            <h4 className="mb-4">How would you like to pay?</h4>
           </div>
           <div className="row">
             <div className="col col-4">

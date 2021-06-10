@@ -28,6 +28,13 @@ function Input({
         type === "checkbox" ? "custom-control custom-switch" : "form-group"
       }
     >
+      <label
+        htmlFor={id}
+        className={type === "checkbox" ? "custom-control-label" : ""}
+      >
+        {label}
+      </label>
+
       <input
         // className={
         //   hasErrorMessage && errorMessage
@@ -59,12 +66,6 @@ function Input({
         onBlur={handleBlur}
         {...props}
       />
-      <label
-        htmlFor={id}
-        className={type === "checkbox" ? "custom-control-label" : ""}
-      >
-        {label}
-      </label>
       {hasErrorMessage && errorMessage && (
         <p className="invalid-feedback">{errorMessage}</p>
       )}
