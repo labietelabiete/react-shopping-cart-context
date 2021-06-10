@@ -14,17 +14,11 @@ function Input({
   hasErrorMessage,
   ...props
 }) {
-  const { tempData, state } = useContext(checkoutContext);
+  const { tempData, focusCreditCard } = useContext(checkoutContext);
 
-  function expiryDate(e) {
+  function saveTempData(e) {
+    // const data = `{"protectedCardNumber" : "${e.target.value}"}`;
     const data = `{"${e.target.id}" : "${e.target.value}"}`;
-    tempData(JSON.parse(data));
-    return value;
-  }
-
-  function protectCardNumber(e) {
-    console.log(state);
-    const data = `{"protectedCardNumber" : "${e.target.value}"}`;
     tempData(JSON.parse(data));
   }
 
@@ -35,12 +29,15 @@ function Input({
         type === "checkbox" ? "custom-control custom-switch" : "form-group"
       }
     >
-      <label
-        htmlFor={id}
-        className={type === "checkbox" ? "custom-control-label" : ""}
-      >
-        {label}
-      </label>
+      {type !== "checkbox" ||
+        (type !== "radio" && (
+          <label
+            htmlFor={id}
+            className={type === "checkbox" ? "custom-control-label" : ""}
+          >
+            {label}
+          </label>
+        ))}
       <input
         // className={
         //   hasErrorMessage && errorMessage
@@ -66,15 +63,28 @@ function Input({
         placeholder={placeholder}
         value={value}
         onChange={(e) => {
-          expiryDate(e);
           handleChange(e);
-          if (id === "cardNumber") {
-            protectCardNumber(e);
-          }
+          saveTempData(e);
+          // if (id === "cardNumber") {
+          //   protectCardNumber(e);
+          // }
         }}
-        onBlur={handleBlur}
+        onBlur={(e) => {
+          handleBlur(e);
+        }}
+        onFocus={(e) => {
+          focusCreditCard(e);
+        }}
         {...props}
       />
+      {type === "checkbox" && (
+        <label
+          htmlFor={id}
+          className={type === "checkbox" ? "custom-control-label" : ""}
+        >
+          {label}
+        </label>
+      )}
       {hasErrorMessage && errorMessage && (
         <p className="invalid-feedback">{errorMessage}</p>
       )}
