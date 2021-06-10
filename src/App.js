@@ -137,7 +137,6 @@ function App() {
 
   function tempData(data) {
     dispatch({ type: TEMPSTATEDATA, payload: data });
-    setLocalStorage(data, CHECKOUT_DATA_LOCAL_STORAGE_KEY);
   }
 
   useEffect(() => {
