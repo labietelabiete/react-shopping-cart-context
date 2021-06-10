@@ -38,6 +38,8 @@ function PaymentDetails() {
         cardExpiryDate: values.cardExpiryDate,
         cardCVV: values.cardCVV,
         termsConditions: values.termsConditions,
+        navBar: 100,
+        disabledOrderSummary: false,
       });
       setTimeout(() => {
         setHasSubmitted(true);

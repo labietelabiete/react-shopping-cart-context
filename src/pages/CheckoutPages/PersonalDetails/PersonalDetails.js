@@ -45,6 +45,8 @@ function PersonalDetails({ cartItems }) {
         email: values.email,
         phonePrefix: values.phonePrefix,
         phoneNumber: values.phoneNumber,
+        navBar: 33,
+        disabledBillingAddress: false,
       });
       setTimeout(() => {
         setHasSubmitted(true);

@@ -21,6 +21,11 @@ const checkoutData = createContext({
   termsConditions: false,
   setCheckoutData: () => {},
   tempData: () => {},
+  navBar: 40,
+  disabledPersonalDetails: false,
+  disabledBillingAddress: true,
+  disabledPaymentDetails: true,
+  disabledOrderSummary: true,
 });
 
 export default checkoutData;

@@ -35,6 +35,8 @@ function BillingAddress({ cartItems }) {
         city: values.city,
         ZC: values.ZC,
         country: values.country,
+        navBar: 66,
+        disabledPaymentDetails: false,
       });
       setTimeout(() => {
         setHasSubmitted(true);

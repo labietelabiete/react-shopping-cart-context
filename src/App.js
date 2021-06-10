@@ -47,6 +47,11 @@ const initialCheckoutContext = {
   termsConditions: false,
   setPersonalDetails: () => {},
   tempData: () => {},
+  navBar: 0,
+  disabledPersonalDetails: false,
+  disabledBillingAddress: true,
+  disabledPaymentDetails: true,
+  disabledOrderSummary: true,
 };
 
 function reducer(state, action) {
