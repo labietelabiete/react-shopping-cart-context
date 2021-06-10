@@ -60,8 +60,7 @@ function OrderSummary({ cartItems }) {
           <div className="col col-12">
             <h3 className="text-center mb-5">Pursache resume</h3>
             <div className="row">
-              <div className="col col-6" />
-              <div className="col col-3 border-bottom">
+              <div className="col col-9 border-bottom">
                 <h5>Product:</h5>
               </div>
               <div className="col col-1 border-bottom">
@@ -71,14 +70,13 @@ function OrderSummary({ cartItems }) {
                 <h5>Amount:</h5>
               </div>
               <div className="col col-1 border-bottom">
-                <h5>Total:</h5>
+                <h5 className="text-end">Total:</h5>
               </div>
             </div>
             {cartItems.map((item) => (
               <div key={item.id} id={item.id} className="row">
                 <div className="col col-9">
                   <div className="row">
-                    <div className="col col-6" />
                     <img
                       src={item.img}
                       alt={item.title}
