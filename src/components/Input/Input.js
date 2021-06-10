@@ -14,13 +14,20 @@ function Input({
   hasErrorMessage,
   ...props
 }) {
-  const { tempData } = useContext(checkoutContext);
+  const { tempData, state } = useContext(checkoutContext);
 
   function expiryDate(e) {
     const data = `{"${e.target.id}" : "${e.target.value}"}`;
     tempData(JSON.parse(data));
     return value;
   }
+
+  function protectCardNumber(e) {
+    console.log(state);
+    const data = `{"protectedCardNumber" : "${e.target.value}"}`;
+    tempData(JSON.parse(data));
+  }
+
   return (
     <div
       // className="form-group"
@@ -28,6 +35,12 @@ function Input({
         type === "checkbox" ? "custom-control custom-switch" : "form-group"
       }
     >
+      <label
+        htmlFor={id}
+        className={type === "checkbox" ? "custom-control-label" : ""}
+      >
+        {label}
+      </label>
       <input
         // className={
         //   hasErrorMessage && errorMessage
@@ -55,16 +68,13 @@ function Input({
         onChange={(e) => {
           expiryDate(e);
           handleChange(e);
+          if (id === "cardNumber") {
+            protectCardNumber(e);
+          }
         }}
         onBlur={handleBlur}
         {...props}
       />
-      <label
-        htmlFor={id}
-        className={type === "checkbox" ? "custom-control-label" : ""}
-      >
-        {label}
-      </label>
       {hasErrorMessage && errorMessage && (
         <p className="invalid-feedback">{errorMessage}</p>
       )}
