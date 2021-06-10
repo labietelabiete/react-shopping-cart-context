@@ -38,7 +38,7 @@ function PaymentDetails() {
         cardExpiryDate: values.cardExpiryDate,
         cardCVV: values.cardCVV,
         termsConditions: values.termsConditions,
-        navBar: 100,
+        navBar: 87.5,
         disabledOrderSummary: false,
       });
       setTimeout(() => {

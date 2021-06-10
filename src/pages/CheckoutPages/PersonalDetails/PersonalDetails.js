@@ -45,7 +45,7 @@ function PersonalDetails({ cartItems }) {
         email: values.email,
         phonePrefix: values.phonePrefix,
         phoneNumber: values.phoneNumber,
-        navBar: 33,
+        navBar: 37.5,
         disabledBillingAddress: false,
       });
       setTimeout(() => {

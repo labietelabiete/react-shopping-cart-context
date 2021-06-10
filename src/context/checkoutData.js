@@ -21,7 +21,7 @@ const checkoutData = createContext({
   termsConditions: false,
   setCheckoutData: () => {},
   tempData: () => {},
-  navBar: 40,
+  navBar: 12.5,
   disabledPersonalDetails: false,
   disabledBillingAddress: true,
   disabledPaymentDetails: true,
